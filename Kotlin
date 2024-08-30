@@ -1,0 +1,48 @@
+class ElectronicsAdapter(private val onClick: OnClick) : RecyclerView.Adapter<ElectronicsAdapter.viewHolder>() {
+
+    private val electronicsList:ArrayList<Electronics> = arrayListOf()
+
+    fun updateList(newList: List<Electronics>){
+        electronicsList.clear()
+        electronicsList.addAll(newList)
+        notifyDataSetChanged()
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewHolder {
+        val view =ElectronicsLayoutBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        return viewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: viewHolder, position: Int) {
+        val currentPos = electronicsList[position]
+      holder.series.text = currentPos.id.toString()
+        holder.itemName.text = currentPos.itemName
+        holder.iteQuantity.text = currentPos.itemQuantity
+        holder.deteteBtn.setOnClickListener {
+            onClick.onDeleteClick(currentPos)
+        }
+        holder.itemView.setOnClickListener {
+            onClick.onClick(currentPos)
+        }
+
+
+
+    }
+
+    override fun getItemCount(): Int {
+       return electronicsList.size
+    }
+
+    inner class viewHolder(binding: ElectronicsLayoutBinding) : RecyclerView.ViewHolder(binding.root){
+        var series = binding.series
+        var itemName = binding.itemName
+        var iteQuantity = binding.itemQuantity
+        var deteteBtn = binding.deleteBtn
+
+    }
+
+}
+interface OnClick{
+    fun onClick(electronics: Electronics)
+    fun onDeleteClick(electronics: Electronics)
+}
