@@ -1,4 +1,4 @@
-class ElectronicsAdapter(private val onClick: OnClick) : RecyclerView.Adapter<ElectronicsAdapter.viewHolder>() {
+class ElectronicsAdapter(private val onclick : onclick) : RecyclerView.Adapter<ElectronicsAdapter.viewHolder>() {
 
     private val electronicsList:ArrayList<Electronics> = arrayListOf()
 

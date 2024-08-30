@@ -1,3 +1,6 @@
-a= 20
-b = 40
-print(a,b)
+a= 70
+b = 60
+c= 40
+d = 100
+e = a+b+c+d
+print(e)
